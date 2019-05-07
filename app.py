@@ -116,8 +116,7 @@ def password_update(user_id):
 
 	return redirect( url_for('profile', user_id=user_id) )
 
-
-
+# hello word whatsup?
 
 @app.route('/profile/<int:user_id>/username', methods=['POST'])
 def username_update(user_id):
