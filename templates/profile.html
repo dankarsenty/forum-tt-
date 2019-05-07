@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{user.username}}</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar navbar-dark bg-info">
+	<a class="navbar-brand text-warning" href="#">Messages</a>
+	{% if 'username' in session %}
+	<a class="navbar-brand text-warning" href="/logout">Logout</a>
+	{% else %}
+	<a class="navbar-brand text-warning" href="/signin">Login</a>
+	{% endif %}
+	</nav>
+
+
+
+
+
+
+
+<div class="container">
+    <div class="row align-items-center mb-3 mt-3">
+      <div class="col-sm-8 offset-2 ">
+		<div class="card ">
+    		<div class="card-body">
+    			<div class="card-footer text-center" style="background-color: #e3f2fd;" >{{ user.username}}</div><br>
+
+
+    			{% if 'username' in session and user.username == session['username'] %}
+    			{% with error_messages = get_flashed_messages() %}
+        			{% if error_messages %}
+        			<ul>
+           				 {% for error_message in error_messages %}
+            		<li>{{ error_message }}</li>
+           				 {% endfor %}
+        			</ul>
+        			{% endif %}
+      			{% endwith %}
+
+				
+				<label>Modify Password</label>
+				<form method="POST" action="/profile/{{user.id}}/password">
+				  <div class="form-group">
+				    <input type="password" class="form-control mx-auto " name="old-password" placeholder="Enter old password">
+				    <br>
+				    <input type="password" class="form-control mx-auto " name="new-password" placeholder="Enter new password">
+				    <br>
+					<button type="submit" class="btn btn-warning mt-3">modify password</button><br>
+					<br>
+				</form>\
+				<br>
+				<label>Modify Username</label>
+				<form method="POST" action="/profile/{{user.id}}/username">	
+				<div class="form-group">
+					<input type="text" class="form-control mx-auto " name="old-username" placeholder="Enter old username">
+				    <br>
+				    <input type="text" class="form-control mx-auto " name="new-username" placeholder="Enter new username">
+				    <br>
+					<button type="submit" class="btn btn-warning mt-3">modify username</button>
+
+
+
+<!-- <input type="password" class="form-control mx-auto " name="old-password"> <br>
+                    <label> New Password</label><br>
+                    <input type="password" class="form-control mx-auto " name="new-password"> <br>
+                    <button type="submit" class="btn btn-outline-primary btn-block">save</button>
+                   </form>
+                   <form method="POST" action="/profil/{{ user.id }}/username">
+                    <label> New username</label><br>
+                    <input type="text" class="form-control mx-auto " name="new-username"> <br>
+                    <button type="submit" class="btn btn-outline-primary btn-block">save</button>
+                   </form>
+                   {% endif %}
+                                {% endif %} -->
+
+
+
+
+				
+
+				  </div>
+				
+				{% endif %}
+
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+ <div class="container">
+    <div class="row align-items-center mb-3 mt-3">
+      <div class="col-sm-8 offset-2 ">
+		<div class="card "> 
+			<div class="card-footer text-center" style="background-color: #e3f2fd;" >Messages/Comments for -- {{ user.username}} --</div><br>
+
+				<ul>
+					{% for message in messages %}
+					<li>{{ message.text }}</li>
+					{% endfor %}
+				</ul>
+
+
+
+
+
+			</div>
+		</div>
+	 </div>
+</div>
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

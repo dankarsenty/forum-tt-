@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Signup</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+
+
+  <nav class="navbar navbar-dark bg-info">
+    <a class="navbar-brand text-warning" href="#">Signup</a>
+  </nav>
+
+
+  <div class="container">
+    <div class="row align-items-center mb-3 mt-3">
+      <div class="col-sm-8 offset-2 ">
+    
+
+
+<div class="card">
+  <h5 class="card-header">If you are not already a member, signup!</h5>
+    <div class="card-body">
+
+
+          {% with error_messages = get_flashed_messages() %}
+              {% if error_messages %}
+              <ul>
+                   {% for error_message in error_messages %}
+                <li>{{ error_message }}</li>
+                   {% endfor %}
+              </ul>
+              {% endif %}
+          {% endwith %}
+<form method="POST" action="/signup"> 
+  <div class="form-group">
+    <label>Username</label>
+      <input type="text" class="form-control" name="username" placeholder="username here">
+  </div>
+
+  <div class="form-group">
+    <label>Password</label>
+      <input type="password" class="form-control" name="password" placeholder="password here"><br>
+        <button type="submit" >submit</button><br>
+          <a href="/signin" class="btn btn-outline-info mt-5">sign-in</a>
+  </div>
+
+
+</form>
+
+    
+  
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Forum</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+	<nav class="navbar navbar-dark bg-info">
+	<a class="navbar-brand text-warning" href="#">Messages</a>
+	{% if 'username' in session %}
+	<a class="navbar-brand text-warning" href="/logout">Logout</a>
+	{% else %}
+	<a class="navbar-brand text-warning" href="/signin">Login</a>
+	{% endif %}
+	</nav>
+
+
+<div class="container">
+    <div class="row align-items-center mb-3 mt-3">
+      <div class="col-sm-8 offset-2 ">
+		<div class="card ">
+    		<div class="card-body">
+    			<div class="card-footer text-center" style="background-color: #e3f2fd;" >SUJET DE DISCUSSION- {{ discussion.title }}</div><br>
+
+
+  
+{% if 'username' in session %}
+<form method="POST" action="/messages/{{discussion.id}}/">
+  <div class="form-group">
+    <label>Leave a message/comment</label>
+    <textarea type="text" class="form-control" name="text" placeholder="leave a message"></textarea><br>
+	<button type="submit" class="btn btn-primary mt-3">postez votre discussion</button>
+  </div>
+</form>
+{% endif %}
+
+			</div>
+		</div>
+	 </div>
+</div>
+</div>
+
+
+<div class="container">
+	<div class="row align-items-center mb-3 mt-3">
+		<div class="col-sm-8 offset-2 ">
+    
+
+			{% for message in messages %}
+			<div class="card">
+			<div class="card-body">
+			<div class="card mt-3 mb-3">
+			<h6>{{ discussion.title }}</h6>
+			<hr>
+			{{message.text}}
+			
+			<li>
+				<label>Date: --{{ message.date}}--</label>
+			</li>
+			<li>
+				<a href="/profile/{{message.user.id}}">{{message.user.username}}</a>
+			</li>
+			
+			</div>
+			</div>
+			{% endfor %}
+
+		</div>
+
+	</div>
+</div>
+</div>
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
